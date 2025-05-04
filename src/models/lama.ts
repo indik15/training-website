@@ -1,21 +1,21 @@
 import { Schema, model } from 'mongoose';
 
-// Інтерфейс для об'єкта "Заєць"
-interface IRabbit {
-    name: string; // Ім'я зайця
-    age: number; // Вік зайця у роках
-    height: number; // Висота зайця в сантиметрах
-    weight: number; // Вага зайця в кілограмах
-    gender: 'male' | 'female'; // Стать зайця: 'male' - самець, 'female' - самка
-    description?: string; // Опис зайця (необов'язкове поле)
+// Інтерфейс для об'єкта "Лама"
+interface ILama {
+    name: string; // Ім'я лами
+    age: number; // Вік лами у роках
+    height: number; // Висота лами в сантиметрах
+    weight: number; // Вага лами в кілограмах
+    gender: 'male' | 'female'; // Стать лами: 'male' - самець, 'female' - самка
+    description?: string; // Опис лами (необов'язкове поле)
     dateAdded: Date; // Дата додавання запису до бази даних
 }
 
-// Схема MongoDB для моделі "Заєць"
-const rabbitSchema = new Schema<IRabbit>({
+// Схема MongoDB для моделі "Лама"
+const lamaSchema = new Schema<ILama>({
     name: {
         type: String,
-        required: true, // Поле є обов'язковим
+        requced: true, // Поле є обов'язковим
     },
     age: {
         type: Number,
@@ -42,5 +42,5 @@ const rabbitSchema = new Schema<IRabbit>({
 });
 
 // Створення моделі Mongoose на основі схеми
-export const Rabbit = model<IRabbit>('Rabbit', rabbitSchema);
-export type { IRabbit }; // Експортуємо інтерфейс для використання в інших файлах
+export const Lama = model<ILama>('Lama', lamaSchema);
+export type { ILama }; // Експортуємо інтерфейс для використання в інших файлах

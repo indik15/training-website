@@ -4,9 +4,9 @@ export const swaggerSpec = {
     openapi: '3.0.0',
     // Загальна інформація про API
     info: {
-        title: 'API Сайту про Зайців',
+        title: 'API Сайту про Лам',
         version: '1.0.0',
-        description: 'Документація API для Сайту про Зайців',
+        description: 'Документація API для Сайту про Лам',
     },
     // Налаштування серверів для тестування API
     servers: [
@@ -20,18 +20,18 @@ export const swaggerSpec = {
     ],
     // Визначення роутерів API та операцій з ними
     paths: {
-        '/api/rabbits': {
-            // GET запит для отримання всіх зайців
+        '/api/lamas': {
+            // GET запит для отримання всіх лам
             get: {
-                summary: 'Отримати всіх зайців',
+                summary: 'Отримати всіх лам',
                 responses: {
                     '200': {
-                        description: 'Список всіх зайців',
+                        description: 'Список всіх лам',
                         content: {
                             'application/json': {
                                 schema: {
                                     type: 'array',
-                                    items: { $ref: '#/components/schemas/Rabbit' },
+                                    items: { $ref: '#/components/schemas/Lama' },
                                 },
                             },
                         },
@@ -39,23 +39,23 @@ export const swaggerSpec = {
                 },
             },
 
-            // POST запит для створення нового зайця
+            // POST запит для створення нової лам
             post: {
-                summary: 'Створити нового зайця',
+                summary: 'Створити нову ламу',
                 requestBody: {
                     required: true,
                     content: {
                         'application/json': {
-                            schema: { $ref: '#/components/schemas/Rabbit' },
+                            schema: { $ref: '#/components/schemas/Lama' },
                         },
                     },
                 },
                 responses: {
                     '201': {
-                        description: "Створений об'єкт зайця",
+                        description: "Створений об'єкт лами",
                         content: {
                             'application/json': {
-                                schema: { $ref: '#/components/schemas/Rabbit' },
+                                schema: { $ref: '#/components/schemas/Lama' },
                             },
                         },
                     },
@@ -63,112 +63,112 @@ export const swaggerSpec = {
             },
         },
 
-        // Операції для конкретного зайця за ID
-        '/api/rabbits/{id}': {
-            // GET запит для отримання зайця за ID
+        // Операції для конкретного лам за ID
+        '/api/lamas/{id}': {
+            // GET запит для отримання лам за ID
             get: {
-                summary: 'Отримати зайця за ID',
+                summary: 'Отримати ламу за ID',
                 parameters: [
                     {
                         in: 'path',
                         name: 'id',
                         required: true,
                         schema: { type: 'string' },
-                        description: 'ID зайця',
+                        description: 'ID лами',
                     },
                 ],
                 responses: {
                     '200': {
-                        description: "Об'єкт зайця",
+                        description: "Об'єкт лами",
                         content: {
                             'application/json': {
-                                schema: { $ref: '#/components/schemas/Rabbit' },
+                                schema: { $ref: '#/components/schemas/Lama' },
                             },
                         },
                     },
-                    '404': { description: 'Зайця не знайдено' },
+                    '404': { description: 'Ламу не знайдено' },
                 },
             },
 
-            // PUT запит для повного оновлення зайця за ID
+            // PUT запит для повного оновлення лами за ID
             put: {
-                summary: 'Повністю оновити зайця',
+                summary: 'Повністю оновити ламу',
                 parameters: [
                     {
                         in: 'path',
                         name: 'id',
                         required: true,
                         schema: { type: 'string' },
-                        description: 'ID зайця',
+                        description: 'ID лами',
                     },
                 ],
                 requestBody: {
                     required: true,
                     content: {
                         'application/json': {
-                            schema: { $ref: '#/components/schemas/Rabbit' },
+                            schema: { $ref: '#/components/schemas/Lama' },
                         },
                     },
                 },
                 responses: {
                     '200': {
-                        description: "Оновлений об'єкт зайця",
+                        description: "Оновлений об'єкт лами",
                         content: {
                             'application/json': {
-                                schema: { $ref: '#/components/schemas/Rabbit' },
+                                schema: { $ref: '#/components/schemas/Lama' },
                             },
                         },
                     },
-                    '404': { description: 'Зайця не знайдено' },
+                    '404': { description: 'Ламу не знайдено' },
                 },
             },
-            // PATCH запит для часткового оновлення зайця за ID
+            // PATCH запит для часткового оновлення лами за ID
             patch: {
-                summary: 'Частково оновити зайця',
+                summary: 'Частково оновити ламу',
                 parameters: [
                     {
                         in: 'path',
                         name: 'id',
                         required: true,
                         schema: { type: 'string' },
-                        description: 'ID зайця',
+                        description: 'ID лами',
                     },
                 ],
                 requestBody: {
                     required: true,
                     content: {
                         'application/json': {
-                            schema: { $ref: '#/components/schemas/Rabbit' },
+                            schema: { $ref: '#/components/schemas/Lama' },
                         },
                     },
                 },
                 responses: {
                     '200': {
-                        description: "Оновлений об'єкт зайця",
+                        description: "Оновлений об'єкт лами",
                         content: {
                             'application/json': {
-                                schema: { $ref: '#/components/schemas/Rabbit' },
+                                schema: { $ref: '#/components/schemas/Lama' },
                             },
                         },
                     },
-                    '404': { description: 'Зайця не знайдено' },
+                    '404': { description: 'Ламу не знайдено' },
                 },
             },
-            // DELETE запит для видалення даних про зайця за ID
+            // DELETE запит для видалення даних про ламу за ID
             delete: {
-                summary: 'Видалити дані про зайця',
+                summary: 'Видалити дані про ламу',
                 parameters: [
                     {
                         in: 'path',
                         name: 'id',
                         required: true,
                         schema: { type: 'string' },
-                        description: 'ID зайця',
+                        description: 'ID лами',
                     },
                 ],
                 responses: {
                     '200': { description: 'Повідомлення про успішне видалення' },
-                    '404': { description: 'Зайця не знайдено' },
+                    '404': { description: 'Ламу не знайдено' },
                 },
             },
         },
@@ -179,34 +179,34 @@ export const swaggerSpec = {
         // Схеми даних
         schemas: {
             // Схема об'єкта Заєць
-            Rabbit: {
+            Lama: {
                 type: 'object',
                 required: ['name', 'age', 'height', 'weight', 'gender'],
                 properties: {
                     name: {
                         type: 'string',
-                        description: "Ім'я зайця",
+                        description: "Ім'я лами",
                     },
                     age: {
                         type: 'number',
-                        description: 'Вік зайця у роках',
+                        description: 'Вік лами у роках',
                     },
                     height: {
                         type: 'number',
-                        description: 'Висота зайця в сантиметрах',
+                        description: 'Висота лами в сантиметрах',
                     },
                     weight: {
                         type: 'number',
-                        description: 'Вага зайця в кілограмах',
+                        description: 'Вага лами в кілограмах',
                     },
                     gender: {
                         type: 'string',
                         enum: ['male', 'female'],
-                        description: 'Стать зайця',
+                        description: 'Стать лами',
                     },
                     description: {
                         type: 'string',
-                        description: "Опис зайця (необов'язкове поле)",
+                        description: "Опис лами (необов'язкове поле)",
                     },
                 },
             },
