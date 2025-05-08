@@ -26,7 +26,8 @@ function Rehabilitation() {  // Стан для зберігання даних 
     height: '',
     weight: '',
     gender: 'male',
-    description: ''
+    description: '',
+    habitatTerritory: ''
   });
 
   // При рендерингу компонента, отримуємо всіх лам
@@ -67,7 +68,7 @@ function Rehabilitation() {  // Стан для зберігання даних 
     let processedValue = value;
     
     // Конвертуємо числові значення з рядків у числа
-    if (['age', 'height', 'weight'].includes(name)) {
+    if (['age', 'height', 'weight', 'habitatTerritory'].includes(name)) {
       processedValue = value === '' ? '' : Number(value);
     }
     
@@ -85,21 +86,23 @@ function Rehabilitation() {  // Стан для зберігання даних 
       height: '',
       weight: '',
       gender: 'male',
-      description: ''
+      description: '',
+      habitatTerritory: ''
     });
     setShowAddModal(true);
   };
 
   // Відкриваємо модальне вікно для редагування ламу
-  const handleShowEditModal = (lamma) => {
-    setCurrentLama(lamma);
+  const handleShowEditModal = (lama) => {
+    setCurrentLama(lama);
     setFormData({
-      name: lamma.name,
-      age: lamma.age,
-      height: lamma.height,
-      weight: lamma.weight,
-      gender: lamma.gender,
-      description: lamma.description || ''
+      name: lama.name,
+      age: lama.age,
+      height: lama.height,
+      weight: lama.weight,
+      gender: lama.gender,
+      description: lama.description || '',
+      habitatTerritory: lama.habitatTerritory || ''
     });
     setShowEditModal(true);
   };
@@ -114,8 +117,7 @@ function Rehabilitation() {  // Стан для зберігання даних 
       const newLama = response.data;
       setLamas([...lamas, newLama]);
       setShowAddModal(false);
-      setToastMessage({ text: `ламу "${newLama.name}" успішно додано!`, type: 'success' });
-
+      setToastMessage({ text: `Ламу "${newLama.name}" успішно додано!`, type: 'success' });
     } catch (err) {
       const errorMessage = err.response?.data?.message || err.message;
       setError(`Помилка при створенні: ${errorMessage}`);
@@ -164,10 +166,9 @@ function Rehabilitation() {  // Стан для зберігання даних 
       setLoading(true);
       await axios.delete(`${API_BASE_URL}/lamas/${lamaToDelete._id}`);
       setLamas(lamas.filter(lama => lama._id !== lamaToDelete._id));
-      setToastMessage({ text: `ламу "${lamaToDelete.name}" успішно видалено!`, type: 'success' });
-      setShowDeleteModal(false); // Закриваємо модальне вікно
-      setLamaToDelete(null); // Очищаємо дані ламу для видалення
-
+      setToastMessage({ text: `Ламу "${lamaToDelete.name}" успішно видалено!`, type: 'success' });
+      setShowDeleteModal(false);
+      setLamaToDelete(null);
     } catch (err) {
       const errorMessage = err.response?.data?.message || err.message;
       setError(`Помилка при видаленні: ${errorMessage}`);
@@ -184,7 +185,7 @@ function Rehabilitation() {  // Стан для зберігання даних 
     const options = { year: 'numeric', month: 'long', day: 'numeric' };
     return new Date(dateString).toLocaleDateString('uk-UA', options);
   };
-  
+
   return (
     <main className="container px-4 py-4">
       <header className="d-flex justify-content-between align-items-center mb-4">
@@ -256,6 +257,7 @@ function Rehabilitation() {  // Стан для зберігання даних 
                 <th>Вага (кг)</th>
                 <th>Стать</th>
                 <th>Опис</th>
+                <th>Територія проживання (км²)</th>
                 <th>Дата додавання</th>
                 <th>Дії</th>
               </tr>
@@ -269,6 +271,7 @@ function Rehabilitation() {  // Стан для зберігання даних 
                   <td>{lama.weight}</td>
                   <td>{lama.gender === 'male' ? 'Самець' : 'Самиця'}</td>
                   <td>{lama.description}</td>
+                  <td>{lama.habitatTerritory || 'Н/Д'}</td>
                   <td>{lama.dateAdded ? formatDate(lama.dateAdded) : 'Н/Д'}</td>
                   <td>
                     <button
@@ -409,6 +412,22 @@ function Rehabilitation() {  // Стан для зберігання даних 
                       ></textarea>
                     </div>
                   </div>
+
+                  <div className="row mb-3">
+                    <label htmlFor="habitatTerritory" className="col-sm-3 col-form-label">Територія проживання (км²)</label>
+                    <div className="col-sm-9">
+                      <input 
+                        type="number" 
+                        className="form-control" 
+                        id="habitatTerritory" 
+                        name="habitatTerritory" 
+                        value={formData.habitatTerritory} 
+                        onChange={handleInputChange}
+                        min="0"
+                        step="0.1"
+                      />
+                    </div>
+                  </div>
                 </fieldset>
                 <footer className="d-flex justify-content-end">
                   <button type="button" className="btn btn-secondary me-2" onClick={() => setShowAddModal(false)}>
@@ -547,6 +566,22 @@ function Rehabilitation() {  // Стан для зберігання даних 
                         onChange={handleInputChange}
                         rows={3}
                       ></textarea>
+                    </div>
+                  </div>
+
+                  <div className="row mb-3">
+                    <label htmlFor="edit-habitatTerritory" className="col-sm-3 col-form-label">Територія проживання (км²)</label>
+                    <div className="col-sm-9">
+                      <input 
+                        type="number" 
+                        className="form-control" 
+                        id="edit-habitatTerritory" 
+                        name="habitatTerritory" 
+                        value={formData.habitatTerritory} 
+                        onChange={handleInputChange}
+                        min="0"
+                        step="0.1"
+                      />
                     </div>
                   </div>
                 </fieldset>                
