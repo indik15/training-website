@@ -5,6 +5,7 @@ import Home from './pages/Home';
 import Morphology from './pages/Morphology';
 import Nutrition from './pages/Nutrition';
 import Population from './pages/Population';
+import Rehabilitation from './pages/Rehabilitation';
 import Photo from './pages/Photo';
 import Search from './pages/Search';
 import { SearchProvider } from './context/SearchContext';
@@ -25,6 +26,7 @@ function App() {
               <Route path="/population" element={<Population />} />
               <Route path="/photo" element={<Photo />} />
               <Route path="/search" element={<Search />} />
+              <Route path="/rehabilitation" element={<Rehabilitation />} />
             </Routes>
           </div>
           <Footer />
