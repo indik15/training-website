@@ -69,6 +69,7 @@ describe('API вебдодатку сайту про лам', () => {
                 weight: 2.5,
                 gender: 'male' as const,
                 description: 'Сірий заєць',
+                habitatTerritory: 10,
             };
 
             // Виконуємо POST-запит для створення запису про ламу
@@ -88,6 +89,7 @@ describe('API вебдодатку сайту про лам', () => {
                     expect(res.body).to.have.property('gender', lama.gender);
                     expect(res.body).to.have.property('description', lama.description);
                     expect(res.body).to.have.property('dateAdded');
+                    expect(res.body).to.have.property('habitatTerritory', lama.habitatTerritory);
                     expect(new Date(res.body.dateAdded)).to.be.instanceOf(Date);
                     done();
                 });

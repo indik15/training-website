@@ -9,6 +9,7 @@ interface ILama {
     gender: 'male' | 'female'; // Стать лами: 'male' - самець, 'female' - самка
     description?: string; // Опис лами (необов'язкове поле)
     dateAdded: Date; // Дата додавання запису до бази даних
+    habitatTerritory: number;
 }
 
 // Схема MongoDB для моделі "Лама"
@@ -38,6 +39,11 @@ const lamaSchema = new Schema<ILama>({
     dateAdded: {
         type: Date,
         default: Date.now, // Значення за замовчуванням - поточна дата і час
+    },
+    habitatTerritory: {
+        type: Number,
+        default: 0,
+        required: true, // Поле є обов'язковим
     },
 });
 
