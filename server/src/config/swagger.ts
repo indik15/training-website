@@ -181,7 +181,7 @@ export const swaggerSpec = {
             // Схема об'єкта Заєць
             Lama: {
                 type: 'object',
-                required: ['name', 'age', 'height', 'weight', 'gender'],
+                required: ['name', 'age', 'height', 'weight', 'gender', 'habitatTerritory'],
                 properties: {
                     name: {
                         type: 'string',
@@ -207,6 +207,10 @@ export const swaggerSpec = {
                     description: {
                         type: 'string',
                         description: "Опис лами (необов'язкове поле)",
+                    },
+                    habitatTerritory: {
+                        type: 'number',
+                        description: 'Площа території проживання лами (у квадратних метрах)',
                     },
                 },
             },

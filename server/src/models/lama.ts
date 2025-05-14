@@ -43,6 +43,7 @@ const lamaSchema = new Schema<ILama>({
     habitatTerritory: {
         type: Number,
         default: 0,
+        required: true, // Поле є обов'язковим
     },
 });
 

@@ -69,6 +69,7 @@ describe('API вебдодатку сайту про лам', () => {
                 weight: 2.5,
                 gender: 'male' as const,
                 description: 'Сірий заєць',
+                habitatTerritory: 10,
             };
 
             // Виконуємо POST-запит для створення запису про ламу
@@ -88,6 +89,7 @@ describe('API вебдодатку сайту про лам', () => {
                     expect(res.body).to.have.property('gender', lama.gender);
                     expect(res.body).to.have.property('description', lama.description);
                     expect(res.body).to.have.property('dateAdded');
+                    expect(res.body).to.have.property('habitatTerritory', lama.habitatTerritory);
                     expect(new Date(res.body.dateAdded)).to.be.instanceOf(Date);
                     done();
                 });
@@ -105,6 +107,7 @@ describe('API вебдодатку сайту про лам', () => {
                 weight: 3.2,
                 gender: 'male',
                 description: 'Біла лама',
+                habitatTerritory: 10,
             });
             await testLama.save();
 
@@ -116,6 +119,7 @@ describe('API вебдодатку сайту про лам', () => {
             expect(res.body[0]).to.have.property('name', 'Білан');
             expect(res.body[0]).to.have.property('gender', 'male');
             expect(res.body[0]).to.have.property('description', 'Біла лама');
+            expect(res.body[0]).to.have.property('habitatTerritory', 10);
             expect(res.body[0]).to.have.property('dateAdded');
             expect(new Date(res.body[0].dateAdded)).to.be.instanceOf(Date);
         });
@@ -132,6 +136,7 @@ describe('API вебдодатку сайту про лам', () => {
                 weight: 1.8,
                 gender: 'male',
                 description: 'Коричнева лама',
+                habitatTerritory: 10,
             });
             const savedLama = await testLama.save();
 
@@ -144,6 +149,7 @@ describe('API вебдодатку сайту про лам', () => {
             expect(res.body).to.have.property('weight', 1.8);
             expect(res.body).to.have.property('gender', 'male');
             expect(res.body).to.have.property('description', 'Коричнева лама');
+            expect(res.body).to.have.property('habitatTerritory', 10);
         });
 
         it('має повернути 404 для неіснуючої лами', async () => {
@@ -164,6 +170,7 @@ describe('API вебдодатку сайту про лам', () => {
                 weight: 1.8,
                 gender: 'male',
                 description: 'Початковий опис',
+                habitatTerritory: 10,
             });
             const savedLama = await testLama.save();
 
@@ -191,6 +198,7 @@ describe('API вебдодатку сайту про лам', () => {
             expect(res.body).to.have.property('weight', 2.5);
             expect(res.body).to.have.property('gender', 'female');
             expect(res.body).to.have.property('description', 'Оновлений опис');
+            expect(res.body).to.have.property('habitatTerritory', 10);
             expect(res.body).to.have.property('dateAdded');
             expect(new Date(res.body.dateAdded)).to.be.instanceOf(Date);
         });
@@ -204,6 +212,7 @@ describe('API вебдодатку сайту про лам', () => {
                 weight: 1.8,
                 gender: 'male',
                 description: 'Початковий опис',
+                habitatTerritory: 10,
             });
             const savedLama = await testLama.save();
 
@@ -230,6 +239,7 @@ describe('API вебдодатку сайту про лам', () => {
             expect(unchangedLama).to.have.property('name', 'Оригінальний');
             expect(unchangedLama).to.have.property('height', 25);
             expect(unchangedLama).to.have.property('weight', 1.8);
+            expect(unchangedLama).to.have.property('habitatTerritory', 10);
         });
     });
 
@@ -244,6 +254,7 @@ describe('API вебдодатку сайту про лам', () => {
                 weight: 1.8,
                 gender: 'male',
                 description: 'Початковий опис',
+                habitatTerritory: 10,
             });
             const savedLama = await testLama.save();
 
@@ -252,6 +263,7 @@ describe('API вебдодатку сайту про лам', () => {
                 name: 'Частково оновлений',
                 age: 3,
                 description: 'Оновлений опис',
+                habitatTerritory: 25,
             };
 
             // Виконуємо PATCH-запит
@@ -269,6 +281,7 @@ describe('API вебдодатку сайту про лам', () => {
             expect(res.body).to.have.property('gender', 'male');
             expect(res.body).to.have.property('description', 'Оновлений опис');
             expect(res.body).to.have.property('dateAdded');
+            expect(res.body).to.have.property('habitatTerritory', 25);
             expect(new Date(res.body.dateAdded)).to.be.instanceOf(Date);
         });
 
@@ -281,6 +294,7 @@ describe('API вебдодатку сайту про лам', () => {
                 weight: 1.8,
                 gender: 'male',
                 description: 'Початковий опис',
+                habitatTerritory: 10,
             });
             const savedLama = await testLama.save();
 
@@ -307,6 +321,7 @@ describe('API вебдодатку сайту про лам', () => {
             expect(res.body).to.have.property('height', 25);
             expect(res.body).to.have.property('weight', 1.8);
             expect(res.body).to.have.property('gender', 'female');
+            expect(res.body).to.have.property('habitatTerritory', 10);
             expect(res.body).to.have.property('description', 'Оновлений опис');
         });
     });
@@ -348,6 +363,7 @@ describe('API вебдодатку сайту про лам', () => {
                 weight: 2.1,
                 gender: 'female',
                 description: 'Чорний заєць',
+                habitatTerritory: 10,
             });
             const savedLama = await testLama.save();
 
