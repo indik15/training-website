@@ -18,7 +18,15 @@
   background-color: #c3e6cb; /* Pale green for list items */
   color: #155724;
 }
- 
+
+.carousel-item {
+  display: none;
+}
+
+.carousel-item.active {
+  display: block;
+}
+
 .custom-green-theme .list-group-item:hover {
   background-color: #b1dfbb; /* Slightly darker green on hover */
 }
